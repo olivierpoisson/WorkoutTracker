@@ -1,6 +1,16 @@
 <template>
-    <div id="nav">Hello World</div>
+    <Navigation />
 </template>
+
+<script>
+import Navigation from "./components/Nav.vue";
+
+export default {
+    components: {
+        Navigation,
+    },
+};
+</script>
 
 <style>
 * {
