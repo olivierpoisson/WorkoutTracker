@@ -4,16 +4,58 @@
             <img src="../assets/Logo.png" alt="" />
         </a>
         <div class="links RowCenter">
-            <a href="#">Home</a>
-            <a href="#">Workouts</a>
-            <a href="#">Exercices</a>
+            <div
+                @mouseenter="linkHover"
+                @mouseleave="linkMouseLeave"
+                class="link"
+            >
+                <a href="#">Home</a>
+                <span class="underline"></span>
+            </div>
+            <div
+                @mouseenter="linkHover"
+                @mouseleave="linkMouseLeave"
+                class="link"
+            >
+                <a href="#">Workouts</a>
+                <span class="underline"></span>
+            </div>
+            <div
+                @mouseenter="linkHover"
+                @mouseleave="linkMouseLeave"
+                class="link"
+            >
+                <a href="#">Exercices</a>
+                <span class="underline"></span>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import gsap from "gsap";
+
 export default {
     name: "Navigation",
+    methods: {
+        linkHover: function linkHover(link) {
+            const target = link.target;
+            const underline = target.querySelector(".underline");
+            gsap.fromTo(
+                underline,
+                { width: "0%" },
+                { width: "100%", duration: 0.3 }
+            );
+        },
+        linkMouseLeave: function linkMouseLeave(link) {
+            const target = link.target;
+            const underline = target.querySelector(".underline");
+            gsap.to(underline, { width: "0%", duration: 0.3 });
+        },
+    },
+    setup() {
+        gsap.set(".underline", { width: "0%" });
+    },
 };
 </script>
 
@@ -28,6 +70,12 @@ export default {
     box-shadow: 0px 5px 15px 0px #00000030;
     background-color: white;
     padding: 0 10vw;
+}
+.underline {
+    background: #5271ff;
+    display: block;
+    height: 3px;
+    width: 0%;
 }
 a {
     font-size: 20px;
@@ -45,10 +93,7 @@ img {
 .links {
     width: -webkit-fill-available;
 }
-.links a {
+.link {
     margin: 0px 20px;
-}
-.links a:hover {
-    text-decoration: underline 3px #5271ff;
 }
 </style>
