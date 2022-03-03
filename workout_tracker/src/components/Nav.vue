@@ -1,5 +1,6 @@
 <template>
     <div class="nav RowCenter">
+        <img src="../assets/Workout Tracker.png" alt="" />
         <a href="#">Home</a>
     </div>
 </template>
