@@ -20,13 +20,16 @@
                 <a href="#">Workouts</a>
                 <span class="underline"></span>
             </div>
+
             <div
                 @mouseenter="linkHover"
                 @mouseleave="linkMouseLeave"
                 class="link"
             >
-                <a href="#">Exercices</a>
-                <span class="underline"></span>
+                <router-link to="/Exercices">
+                    <a href="../views/Exercices.vue">Exercices</a>
+                    <span class="underline"></span>
+                </router-link>
             </div>
         </div>
     </div>
@@ -95,5 +98,6 @@ img {
 }
 .link {
     margin: 0px 20px;
+    cursor: pointer;
 }
 </style>
