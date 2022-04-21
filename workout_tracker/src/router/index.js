@@ -1,5 +1,8 @@
+// import { render } from "vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 import Exercices from "../components/Exercices.vue";
+import Workouts from "../components/Workouts.vue";
+import Home from "../components/Home.vue";
 
 const routes = [
     {
@@ -8,8 +11,14 @@ const routes = [
         component: Exercices,
     },
     {
-        path: "/",
+        path: "/Home",
         name: "Home",
+        component: Home,
+    },
+    {
+        path: "/Workouts",
+        name: "Workouts",
+        component: Workouts,
     },
 ];
 
