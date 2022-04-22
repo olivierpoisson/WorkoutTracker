@@ -58,7 +58,6 @@
                 gsap.to(target, { backgroundColor: "white", duration: 0.3 });
             },
             navAnimation: function () {
-                //  const menuText = document.querySelectorAll(".menuText");
                 if (this.navExpanded) {
                     timelineSidebar.to(".nav", { width: "5%" });
                     timelineSidebar.to(".menuText", { width: "0%" }, "<");
@@ -84,6 +83,7 @@
         height: 100vh;
         position: fixed;
         width: 15%;
+        min-width: 45px;
         top: 0;
         z-index: 10;
         left: 0;
