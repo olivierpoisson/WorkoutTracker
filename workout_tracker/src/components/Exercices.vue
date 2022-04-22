@@ -1,5 +1,8 @@
 <template>
     <div class="container">
+        <div class="searchBar">
+            <h1>search bar</h1>
+        </div>
         <div class="Exercice" v-for="Exercice in Exercices" :key="Exercice">
             <div class="exerciceImg">
                 <img :src="Exercice.img" alt="" />
@@ -60,6 +63,14 @@
         justify-content: center;
         width: 80%;
         max-height: 615px;
+        background-color: white;
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0px 10px 15px 10px #00000030;
+    }
+    .searchBar {
+        display: flex;
+        width: 80%;
         background-color: white;
         border-radius: 30px;
         overflow: hidden;
