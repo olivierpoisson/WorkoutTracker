@@ -9,14 +9,14 @@
                 <div @mouseenter="linkHover" @mouseleave="linkMouseLeave" class="link">
                     <i class="fa-solid fa-home"></i>
                     <div class="menuText">
-                        <a>Home</a>
+                        <a>Accueil</a>
                     </div>
                 </div>
             </router-link>
             <router-link to="/workouts" class="routerLink">
                 <div @mouseenter="linkHover" @mouseleave="linkMouseLeave" class="link">
                     <i class="fa-solid fa-person-running"></i>
-                    <a class="menuText">Workouts</a>
+                    <a class="menuText">Entraînements</a>
                 </div>
             </router-link>
 

@@ -23,7 +23,7 @@
     #app {
         min-height: 100vh;
         width: 100%;
-        background-color: #ffffff;
+        background-color: #5271ff;
         color: rgb(0, 0, 0);
         line-height: 1.5;
     }
