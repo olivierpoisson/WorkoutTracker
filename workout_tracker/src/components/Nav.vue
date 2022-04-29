@@ -1,8 +1,10 @@
 <template>
     <div class="nav Col">
-        <router-link to="/Home" style="min-height: 80px">
-            <img src="../assets/Logo.png" alt="" />
-        </router-link>
+        <div class="logoContainer">
+            <router-link to="/Home">
+                <img src="../assets/Logo.png" alt="" />
+            </router-link>
+        </div>
 
         <div class="links Col">
             <router-link to="/Home">
@@ -59,21 +61,21 @@
             },
             navAnimation: function () {
                 if (this.navExpanded) {
-                    timelineSidebar.to(".nav", { width: "5%" });
+                    timelineSidebar.fromTo(".nav", { minWidth: "200px" }, { minWidth: "80px" });
+                    timelineSidebar.fromTo(".nav", { width: "200px" }, { width: "80px" }, "<");
+                    timelineSidebar.fromTo(".logoContainer", { width: "200px" }, { width: "80px" }, "<");
                     timelineSidebar.to(".menuText", { width: "0%" }, "<");
                     timelineSidebar.to(".fa-arrow-left", { rotateY: "180deg" }, "<");
-
                     this.navExpanded = false;
                 } else {
-                    timelineSidebar.to(".nav", { width: "15%" });
+                    timelineSidebar.fromTo(".nav", { minWidth: "80px" }, { minWidth: "200px" });
+                    timelineSidebar.fromTo(".nav", { width: "80px" }, { width: "200px" }, "<");
+                    timelineSidebar.fromTo(".logoContainer", { width: "80px" }, { width: "200px" }, "<");
                     timelineSidebar.to(".menuText", { width: "100%" }, "<");
                     timelineSidebar.to(".fa-arrow-left", { rotateY: "0deg" }, "<");
                     this.navExpanded = true;
                 }
             },
-        },
-        setup() {
-            gsap.set(".underline", { width: "0%" });
         },
     };
 </script>
@@ -81,9 +83,9 @@
 <style scoped>
     .nav {
         height: 100vh;
-        position: fixed;
-        width: 15%;
-        min-width: 45px;
+        width: 200px;
+        position: sticky;
+        min-width: 200px;
         top: 0;
         z-index: 10;
         left: 0;
@@ -107,6 +109,13 @@
         height: auto;
         display: flex;
         align-items: center;
+    }
+    .logoContainer {
+        width: 200px;
+        overflow: hidden;
+    }
+    .logoContainer img {
+        min-width: 200px;
     }
     img {
         width: 100%;

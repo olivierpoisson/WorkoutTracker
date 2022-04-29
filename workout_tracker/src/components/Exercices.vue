@@ -7,7 +7,7 @@
             <div class="section1">
                 <div class="imageTitle">
                     <div class="exerciceImg">
-                        <img :src="Exercice.img" alt="" />
+                        <img :src="Exercice.img" alt="exercice image" />
                     </div>
                     <div class="exerciceInfos">
                         <h3 class="title">{{ Exercice.nom }}</h3>
@@ -100,7 +100,7 @@
     .container {
         position: relative;
         background-color: #5271ff;
-        padding: 5% 5% 5% 20%;
+        padding: 5% 10%;
         display: flex;
         flex-direction: row;
         justify-content: space-around;

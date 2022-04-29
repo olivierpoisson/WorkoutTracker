@@ -1,6 +1,6 @@
 <template>
     <Navigation />
-    <router-view></router-view>
+    <router-view class="content"></router-view>
 </template>
 
 <script>
@@ -20,12 +20,16 @@
         padding: 0;
         box-sizing: border-box;
     }
+    .content {
+        overflow-y: visible;
+    }
     #app {
         min-height: 100vh;
         width: 100%;
         background-color: #5271ff;
         color: rgb(0, 0, 0);
         line-height: 1.5;
+        display: flex;
     }
     .Row {
         display: flex;
