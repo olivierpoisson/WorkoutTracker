@@ -1,7 +1,16 @@
 <template>
     <div class="container">
         <div class="filters">
-            <input v-model="searchText" class="search" type="text" placeholder="Recherchez un exercice..." />
+            <div class="searchBar">
+                <input v-model="searchText" class="search" type="text" placeholder="Recherchez un exercice..." />
+            </div>
+            <div class="bodyPartFilterContainer">
+                <select v-model="bodyPartFilter" class="bodyPartFilter" placeholder="Filtrer par partie du corps">
+                    <option value="" disabled selected hidden>Partie du corps</option>
+                    <option value="none">Toutes</option>
+                    <option v-for="(part, index) in bodyPartFilters" :key="index" :value="part">{{ part }}</option>
+                </select>
+            </div>
         </div>
         <div class="Exercice" v-for="Exercice in filteredExercices" :key="Exercice.id">
             <div class="section1">
@@ -25,7 +34,7 @@
 </template>
 
 <script>
-    import axios from "axios";
+    // import axios from "axios";
     import gsap from "gsap";
     const timeline = gsap.timeline({
         defaults: {
@@ -40,6 +49,8 @@
                 Exercices: [],
                 exerciceExpanded: false,
                 searchText: "",
+                bodyPartFilter: "",
+                bodyPartFilters: [],
             };
         },
         computed: {
@@ -47,6 +58,11 @@
                 let filtered = this.Exercices;
                 if (this.searchText !== "") {
                     filtered = filtered.filter((x) => x.nom.includes(this.searchText));
+                }
+                if (this.bodyPartFilter !== "") {
+                    if (this.bodyPartFilter !== "none") {
+                        filtered = filtered.filter((x) => x.partie === this.bodyPartFilter);
+                    }
                 }
                 return filtered;
             },
@@ -59,19 +75,8 @@
                     return name.includes(this.searchText);
                 }
             },
-            async getExercices() {
-                const options = {
-                    method: "GET",
-                    url: "https://musclejp.p.rapidapi.com/get-tous",
-                    headers: {
-                        "x-rapidapi-key": "bdd6c0f65dmsh1a758c8849b0437p1999a7jsn8b2ca797c27c",
-                        "x-rapidapi-host": "musclejp.p.rapidapi.com",
-                    },
-                };
-                await axios.request(options).then((response) => {
-                    const array = response.data;
-                    this.Exercices = array;
-                });
+            getExercices() {
+                this.Exercices = this.$store.state.Exercies;
             },
             expandExercice: function (exercice) {
                 this.exerciceExpanded = !this.exerciceExpanded;
@@ -121,9 +126,9 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        width: 45%;
+        width: 48%;
         max-height: 615px;
-        height: 50vh;
+        height: 65vh;
         background-color: white;
         border-radius: 30px;
         overflow: hidden;
@@ -147,13 +152,28 @@
         background-color: #5271ff;
     }
     .filters {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+    .searchBar {
         padding: 10px;
         display: flex;
-        width: 80%;
+        width: 40%;
         background-color: white;
         border-radius: 30px;
         overflow: hidden;
         box-shadow: 0px 10px 15px 10px #00000030;
+    }
+    .bodyPartFilterContainer {
+        padding: 10px;
+        display: flex;
+        width: 30%;
+        background-color: white;
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0px 10px 15px 10px #00000030;
+        justify-content: center;
     }
     .search {
         border: none;
@@ -195,5 +215,10 @@
         font-size: 1.2em;
         text-align: center;
         text-decoration: underline 3px solid black;
+    }
+    .bodyPartFilter {
+        border: none;
+        width: 200px;
+        outline: none;
     }
 </style>
