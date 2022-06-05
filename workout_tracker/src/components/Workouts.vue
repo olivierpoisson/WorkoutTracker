@@ -6,7 +6,7 @@
                 <i class="fa-solid fa-plus addWorkoutIcon" @click="toggleCreateForm()"></i>
                 <div class="createWorkoutForm">
                     <input type="text" name="title" class="newWorkoutTitle" placeholder="titre" />
-                    <input type="checkbox" class="weekDays" />
+                    <input type="radio" class="weekDays" name="test" title="test" />
                     <textarea class="newWorkoutDescription" placeholder="description" />
                     <div class="actions">
                         <button class="createWorkoutButton" @click="addWorkout()">Créer</button>

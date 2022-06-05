@@ -2,32 +2,45 @@
     <div class="container">
         <div class="filters">
             <div class="searchBar">
-                <input v-model="searchText" class="search" type="text" placeholder="Recherchez un exercice..." />
+                <input
+                    v-model="searchText"
+                    class="search"
+                    type="text"
+                    placeholder="Recherchez un exercice..."
+                />
             </div>
             <div class="bodyPartFilterContainer">
-                <select v-model="bodyPartFilter" class="bodyPartFilter" placeholder="Filtrer par partie du corps">
+                <select
+                    v-model="bodyPartFilter"
+                    class="bodyPartFilter"
+                    placeholder="Filtrer par partie du corps"
+                >
                     <option value="" disabled selected hidden>Partie du corps</option>
                     <option value="none">Toutes</option>
-                    <option v-for="(part, index) in bodyPartFilters" :key="index" :value="part">{{ part }}</option>
+                    <option v-for="(part, index) in bodyPartFilters" :key="index" :value="part">
+                        {{ part }}
+                    </option>
                 </select>
             </div>
         </div>
-        <div class="Exercice" v-for="Exercice in filteredExercices" :key="Exercice.id">
-            <div class="section1">
-                <div class="imageTitle">
-                    <div class="exerciceImg">
-                        <img :src="Exercice.img" alt="exercice image" />
+        <div class="Exercices">
+            <div class="Exercice" v-for="Exercice in filteredExercices" :key="Exercice.id">
+                <div class="section1">
+                    <div class="imageTitle">
+                        <div class="exerciceImg">
+                            <img :src="Exercice.img" alt="exercice image" />
+                        </div>
+                        <div class="exerciceInfos">
+                            <h3 class="title">{{ Exercice.nom }}</h3>
+                        </div>
                     </div>
-                    <div class="exerciceInfos">
-                        <h3 class="title">{{ Exercice.nom }}</h3>
+                    <div class="exerciceDescription">
+                        <p class="description">{{ Exercice.description }}</p>
                     </div>
                 </div>
-                <div class="exerciceDescription">
-                    <p class="description">{{ Exercice.description }}</p>
+                <div class="expand">
+                    <button @click="expandExercice" class="expandButton">Description...</button>
                 </div>
-            </div>
-            <div class="expand">
-                <button @click="expandExercice" class="expandButton">Description...</button>
             </div>
         </div>
     </div>
@@ -77,6 +90,7 @@
             },
             getExercices() {
                 this.Exercices = this.$store.state.Exercies;
+                this.bodyPartFilters = [...new Set(this.Exercices.map((x) => x.partie))];
             },
             expandExercice: function (exercice) {
                 this.exerciceExpanded = !this.exerciceExpanded;
@@ -107,11 +121,12 @@
         background-color: #5271ff;
         padding: 5% 10%;
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
         gap: 30px;
+        overflow: hidden;
     }
     .section1 {
         height: 85%;
@@ -155,6 +170,12 @@
         width: 100%;
         display: flex;
         justify-content: space-around;
+    }
+    .Exercices {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        width: 100%;
     }
     .searchBar {
         padding: 10px;
